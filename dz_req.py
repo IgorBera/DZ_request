@@ -2,7 +2,18 @@ import requests
 import time
 
 # Задача №1
+def get_smart_heroes(list_heroes):
+    base_url = "https://akabab.github.io/superhero-api/api/"
+    uri = "all.json"
+    heroes = {}
+    response = requests.get(base_url + uri)
+    for hero in response.json():
+        if hero['name'] in list_heroes:
+            heroes[hero['name']] = hero['powerstats']['intelligence']
+    print(max(heroes, key=heroes.get))
 
+
+get_smart_heroes(['Hulk', 'Captain America', 'Thanos'])
 
 
 # Задача №3
